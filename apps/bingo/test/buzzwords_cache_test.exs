@@ -6,8 +6,8 @@ defmodule BuzzwordsCacheTest do
 
   test "give the cached buzzwords" do
     "buzzwords_test.csv"
-      |> Path.expand(__DIR__)
-      |> BuzzwordsCache.start_link()
+    |> Path.expand(__DIR__)
+    |> BuzzwordsCache.start_link()
 
     cached_buzzwords = BuzzwordsCache.get_buzzwords()
 
