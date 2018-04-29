@@ -7,6 +7,7 @@ defmodule Battleship do
       |> Path.expand(__DIR__)
 
     children = [
+      {Registry, keys: :unique, name: Battleship.GameRegistry},
       %{
         id: Battleship.BuzzwordsCache,
         start: {Battleship.BuzzwordsCache, :start_link, [[buzzwords_file_path]]}

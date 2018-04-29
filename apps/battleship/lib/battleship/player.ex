@@ -1,5 +1,4 @@
 defmodule Battleship.Player do
-
   @enforce_key [:name]
   defstruct [:name]
 

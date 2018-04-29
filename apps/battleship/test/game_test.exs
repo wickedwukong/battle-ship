@@ -5,8 +5,9 @@ defmodule GameTest do
   alias Battleship.{Game, Square}
 
   test "create new game with a specfied size" do
-    game = Game.new(3)
+    game = Game.new("game-name-foo", 3)
 
+    assert "game-name-foo" == game.game_name
     assert Enum.count(game.squares) == 3
 
     first_row = Enum.at(game.squares, 0)
@@ -21,10 +22,7 @@ defmodule GameTest do
     second_row = Enum.at(game.squares, 1)
     assert [Square.new(1, 0), Square.new(1, 1), Square.new(1, 2)] == second_row
 
-
     third_row = Enum.at(game.squares, 2)
     assert [Square.new(2, 0), Square.new(2, 1), Square.new(2, 2)] == third_row
-  end
-end
   end
 end

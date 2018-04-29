@@ -3,7 +3,7 @@ defmodule Battleship.Square do
   defstruct [:x, :y]
 
   alias Battleship.Square
-  
+
   def new(x, y) do
     %Square{x: x, y: y}
   end

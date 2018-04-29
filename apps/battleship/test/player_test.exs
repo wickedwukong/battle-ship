@@ -9,5 +9,4 @@ defmodule PlayerTest do
 
     assert %Player{name: "Nelson"} == player
   end
-
 end
