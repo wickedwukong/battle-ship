@@ -1,8 +1,8 @@
 defmodule BuzzwordsTest do
   use ExUnit.Case, async: true
-  doctest Bingo.Buzzwords
+  doctest BattleShip.Buzzwords
 
-  alias Bingo.Buzzwords
+  alias BattleShip.Buzzwords
 
   test "read buzzwords csv files" do
     buzzwords =

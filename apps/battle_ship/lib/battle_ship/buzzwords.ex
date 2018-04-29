@@ -1,4 +1,4 @@
-defmodule Bingo.Buzzwords do
+defmodule BattleShip.Buzzwords do
   def read_buzzwords(file_path) do
     file_path
     |> Path.expand(__DIR__)

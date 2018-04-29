@@ -1,8 +1,8 @@
 defmodule BuzzwordsCacheTest do
   use ExUnit.Case, async: true
-  doctest Bingo.BuzzwordsCache
+  doctest BattleShip.BuzzwordsCache
 
-  alias Bingo.BuzzwordsCache
+  alias BattleShip.BuzzwordsCache
 
   test "give the cached buzzwords" do
     "buzzwords_test.csv"

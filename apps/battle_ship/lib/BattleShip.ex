@@ -1,4 +1,4 @@
-defmodule Bingo do
+defmodule BattleShip do
   use Application
 
   def start(_type, _args) do
@@ -8,12 +8,12 @@ defmodule Bingo do
 
     children = [
       %{
-        id: Bingo.BuzzwordsCache,
-        start: {Bingo.BuzzwordsCache, :start_link, [[buzzwords_file_path]]}
+        id: BattleShip.BuzzwordsCache,
+        start: {BattleShip.BuzzwordsCache, :start_link, [[buzzwords_file_path]]}
       }
     ]
 
-    opts = [strategy: :one_for_one, name: Bingo.Supervisor]
+    opts = [strategy: :one_for_one, name: BattleShip.Supervisor]
 
     Supervisor.start_link(children, opts)
   end

@@ -1,9 +1,9 @@
-defmodule Bingo.BuzzwordsCache do
+defmodule BattleShip.BuzzwordsCache do
   use GenServer
 
-  alias Bingo.Buzzwords
+  alias BattleShip.Buzzwords
 
-  @interval :timer.seconds(10)
+  @interval :timer.seconds(100)
 
   defmodule State do
     defstruct [:buzzwords, :buzzwords_file_path]
