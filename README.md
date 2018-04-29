@@ -1,1 +1,1 @@
-# hand-rolled-bingo-code
+# elm & elixir powered battleship game

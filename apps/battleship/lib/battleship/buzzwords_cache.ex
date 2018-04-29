@@ -1,7 +1,7 @@
-defmodule BattleShip.BuzzwordsCache do
+defmodule Battleship.BuzzwordsCache do
   use GenServer
 
-  alias BattleShip.Buzzwords
+  alias Battleship.Buzzwords
 
   @interval :timer.seconds(100)
 

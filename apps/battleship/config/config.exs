@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure your application as:
 #
-#     config :battle_ship, key: :value
+#     config :battleship, key: :value
 #
 # and access this configuration in your application as:
 #
-#     Application.get_env(:battle_ship, :key)
+#     Application.get_env(:battleship, :key)
 #
 # You can also configure a 3rd-party app:
 #
