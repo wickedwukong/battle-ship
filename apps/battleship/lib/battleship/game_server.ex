@@ -17,6 +17,7 @@ defmodule Battleship.GameServer do
   # server code
   def init({game_name, size}) do
     game = Game.new(game_name, size)
+    :ets.insert(:games_table, {game_name, game})
     {:ok, game, @timeout}
   end
 end

@@ -7,9 +7,28 @@ defmodule GameServerTest do
 
   test "spawning a game server process" do
     game_name = generate_game_name()
-    size = 3
 
-    assert {:ok, _pid} = GameServer.start_link(game_name, size)
+    assert {:ok, _pid} = GameServer.start_link(game_name, 3)
+  end
+
+  test "a game process is registered under a unique name" do
+    game_name = generate_game_name()
+
+    assert {:ok, _pid} = GameServer.start_link(game_name, 3)
+    assert {:error, {:already_started, _pid}} = GameServer.start_link(game_name, 3)
+  end
+
+  test "store initial state when it started" do
+    game_name = generate_game_name()
+
+    GameServer.start_link(game_name, 3)
+
+    assert [{^game_name, game}] = :ets.lookup(:games_table, game_name)
+
+    assert game_name == game.game_name
+    assert nil == game.winner
+    assert %{} == game.scores
+    assert 3 == Enum.count(game.squares)
   end
 
   defp generate_game_name do

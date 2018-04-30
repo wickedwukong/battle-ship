@@ -14,6 +14,8 @@ defmodule Battleship do
       }
     ]
 
+    :ets.new(:games_table, [:public, :named_table])
+    
     opts = [strategy: :one_for_one, name: Battleship.Supervisor]
 
     Supervisor.start_link(children, opts)
