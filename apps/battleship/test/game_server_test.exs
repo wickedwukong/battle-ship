@@ -3,12 +3,25 @@ defmodule GameServerTest do
 
   doctest Battleship.GameServer
 
-  alias Battleship.GameServer
+  alias Battleship.{GameServer, Game}
 
   test "spawning a game server process" do
     game_name = generate_game_name()
 
     assert {:ok, _pid} = GameServer.start_link(game_name, 3)
+  end
+
+  test "getting a summary" do
+    game_name = generate_game_name()
+
+    {:ok, _pid} = GameServer.start_link(game_name, 3)
+
+    summary = GameServer.summary(game_name)
+
+    assert game_name == summary.game_name
+    assert nil == summary.winner
+    assert %{} == summary.scores
+    assert 3 == Enum.count(summary.squares)
   end
 
   test "a game process is registered under a unique name" do
@@ -29,6 +42,22 @@ defmodule GameServerTest do
     assert nil == game.winner
     assert %{} == game.scores
     assert 3 == Enum.count(game.squares)
+  end
+
+  test "restore a game if there is an existing one stored in ets" do
+    game_name = generate_game_name()
+    game = Game.new(game_name, 1)
+
+    :ets.insert(:games_table, {game_name, game})
+
+    GameServer.start_link(game_name, 999)
+
+    summary = GameServer.summary(game_name)
+
+    assert game_name == summary.game_name
+    assert 1 == Enum.count(summary.squares)
+    assert nil == summary.winner
+    assert %{} == summary.scores
   end
 
   defp generate_game_name do
