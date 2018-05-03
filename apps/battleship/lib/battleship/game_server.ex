@@ -18,7 +18,7 @@ defmodule Battleship.GameServer do
     GenServer.call(via_tuple(game_name), :summary)
   end
 
-  defp via_tuple(game_name) do
+  def via_tuple(game_name) do
     {:via, Registry, {Battleship.GameRegistry, game_name}}
   end
 

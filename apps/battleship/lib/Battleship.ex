@@ -11,6 +11,10 @@ defmodule Battleship do
       %{
         id: Battleship.BuzzwordsCache,
         start: {Battleship.BuzzwordsCache, :start_link, [[buzzwords_file_path]]}
+      },
+      %{
+        id: Battleship.GameSupervisor,
+        start: {Battleship.GameSupervisor, :start_link, [[]]}
       }
     ]
 
