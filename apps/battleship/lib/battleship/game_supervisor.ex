@@ -16,9 +16,8 @@ defmodule Battleship.GameSupervisor do
       id: GameServer,
       start: {GameServer, :start_link, [game_name, size]},
       restart: :transient
-      }
+    }
 
     DynamicSupervisor.start_child(__MODULE__, child_spec)
   end
-
 end
