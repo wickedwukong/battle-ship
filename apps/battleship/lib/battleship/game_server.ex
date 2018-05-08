@@ -18,6 +18,12 @@ defmodule Battleship.GameServer do
     GenServer.call(via_tuple(game_name), :summary)
   end
 
+  def game_pid(game_name) do
+    game_name
+    |> via_tuple()
+    |> GenServer.whereis()
+  end
+
   def via_tuple(game_name) do
     {:via, Registry, {Battleship.GameRegistry, game_name}}
   end

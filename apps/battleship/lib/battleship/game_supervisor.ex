@@ -20,4 +20,10 @@ defmodule Battleship.GameSupervisor do
 
     DynamicSupervisor.start_child(__MODULE__, child_spec)
   end
+
+  def stop_game(game_name) do
+    pid = GameServer.game_pid(game_name)
+    :ets.delete(:games_table, game_name)
+    DynamicSupervisor.terminate_child(__MODULE__, pid)
+  end
 end

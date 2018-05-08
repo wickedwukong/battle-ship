@@ -11,6 +11,13 @@ defmodule GameServerTest do
     assert {:ok, _pid} = GameServer.start_link(game_name, 3)
   end
 
+  test "getting a pid for a game name" do
+    game_name = generate_game_name()
+    {:ok, pid} = GameServer.start_link(game_name, 3)
+
+    assert pid = GameServer.game_pid(game_name)
+  end
+
   test "getting a summary" do
     game_name = generate_game_name()
 
