@@ -9,7 +9,7 @@ defmodule BattleshipHall.Application do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the endpoint when the application starts
-      supervisor(BattleshipHallWeb.Endpoint, []),
+      supervisor(BattleshipHallWeb.Endpoint, [])
       # Start your own worker by calling: BattleshipHall.Worker.start_link(arg1, arg2, arg3)
       # worker(BattleshipHall.Worker, [arg1, arg2, arg3]),
     ]
