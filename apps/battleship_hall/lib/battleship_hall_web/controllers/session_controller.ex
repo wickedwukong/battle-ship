@@ -19,6 +19,5 @@ defmodule BattleshipHallWeb.SessionController do
     conn
     |> put_session(:return_to, nil)
     |> redirect(to: return_to)
-
   end
 end

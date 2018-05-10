@@ -12,5 +12,4 @@ defmodule BattleshipHallWeb.GameView do
       end
     end
   end
-
 end
