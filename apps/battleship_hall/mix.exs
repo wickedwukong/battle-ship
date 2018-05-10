@@ -38,7 +38,14 @@ defmodule BattleshipHall.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:mix_test_watch, "~> 0.5", only: :dev, runtime: false}
+      {:mix_test_watch, "~> 0.5", only: :dev, runtime: false},
+      {:battleship, path: "../battleship"}
+
+
+      # {:bingo, "~> 1.0"}
+      # {:bingo, git: "https://github.com/username/bingo.git"}
+      # {:bingo, git: "git@github.com:username/bingo.git"}
+      # {:bingo, in_umbrella: true}
     ]
   end
 end

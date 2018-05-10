@@ -17,7 +17,10 @@ defmodule BattleshipHallWeb.Router do
     # Use the default browser stack
     pipe_through(:browser)
 
-    get("/", GameController, :index)
+    get("/", GameController, :new)
+
+    resources("/games", GameController, only: [:new, :create, :show])
+
     resources("/sessions", SessionController, only: [:new, :create, :delete], singleton: true)
   end
 

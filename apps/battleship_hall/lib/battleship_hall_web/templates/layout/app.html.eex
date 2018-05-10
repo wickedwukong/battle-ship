@@ -4,22 +4,38 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Hello BattleshipHall!</title>
+    <title>Battleship</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
     <div class="container">
-      <header class="header">
-        <nav role="navigation">
+      <header>
+        <nav>
           <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+            <li>
+              <%= link "Switch Player",
+                       to: session_path(@conn, :delete),
+                       method: :delete %>
+            </li>
           </ul>
         </nav>
-        <span class="logo"></span>
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <div class="letters">
+              <span class="letter inverse">B</span>
+              <span class="letter">A</span>
+              <span class="letter">T</span>
+              <span class="letter">T</span>
+              <span class="letter">L</span>
+              <span class="letter">E</span>
+              <span class="letter inverse">S</span>
+              <span class="letter">H</span>
+              <span class="letter">I</span>
+              <span class="letter">P</span>
+            </div>
+          </div>
+        </div>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
@@ -29,7 +45,16 @@
         <%= render @view_module, @view_template, assigns %>
       </main>
 
+      <footer>
+        built with
+        <a href="http://elixir-lang.org/" target="_blank">Elixir</a> +
+        <a href="http://www.phoenixframework.org/" target="_blank">Phoenix</a> +
+        <a href="http://elm-lang.org/" target="_blank">Elm</a>
+        by
+        <a href="https://twitter.com/wickedwukong"
+           target="_blank">@wickedwukong</a>
+      </footer>
+
     </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
