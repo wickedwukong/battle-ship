@@ -15,9 +15,9 @@ jobs:
 
     working_directory: ~/repo
     steps:
-      - cd apps/battleship_hall
       - checkout
 
       # specify any bash command here prefixed with `run: `
+      - run: cd apps/battleship_hall
       - run: mix deps.get
       - run: mix test
