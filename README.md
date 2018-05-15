@@ -1,1 +1,1 @@
-# elm & elixir powered battleship game
+# elm & elixir powered Tic Tac Toe game
