@@ -4,8 +4,8 @@ defmodule GameTest do
 
   alias TicTacToe.{Game, Square}
 
-  test "create new game with a specfied size" do
-    game = Game.new("game-name-foo", 3)
+  test "create new game" do
+    game = Game.new("game-name-foo")
 
     assert "game-name-foo" == game.game_name
     assert Enum.count(game.squares) == 3

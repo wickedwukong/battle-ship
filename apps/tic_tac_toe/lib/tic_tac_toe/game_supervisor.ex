@@ -11,10 +11,10 @@ defmodule TicTacToe.GameSupervisor do
     DynamicSupervisor.init(strategy: :one_for_one)
   end
 
-  def start_game(game_name, size) do
+  def start_game(game_name) do
     child_spec = %{
       id: GameServer,
-      start: {GameServer, :start_link, [game_name, size]},
+      start: {GameServer, :start_link, [game_name]},
       restart: :transient
     }
 

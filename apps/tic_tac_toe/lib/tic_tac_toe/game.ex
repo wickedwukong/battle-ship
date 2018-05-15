@@ -4,14 +4,14 @@ defmodule TicTacToe.Game do
 
   alias TicTacToe.{Game, Square}
 
-  def new(game_name, size) do
+  def new(game_name) do
     squares =
       for(
-        x <- 0..(size - 1),
-        y <- 0..(size - 1),
+        x <- 0..2,
+        y <- 0..2,
         do: Square.new(x, y)
       )
-      |> Enum.chunk(size)
+      |> Enum.chunk(3)
 
     %Game{squares: squares, game_name: game_name}
   end

@@ -6,10 +6,10 @@ defmodule TicTacToe.GameServer do
   @timeout :timer.hours(3)
 
   # client interface
-  def start_link(game_name, size) do
+  def start_link(game_name) do
     GenServer.start_link(
       __MODULE__,
-      {game_name, size},
+      game_name,
       name: via_tuple(game_name)
     )
   end
@@ -29,11 +29,11 @@ defmodule TicTacToe.GameServer do
   end
 
   # server callback code
-  def init({game_name, size}) do
+  def init(game_name) do
     game =
       case :ets.lookup(:games_table, game_name) do
         [] ->
-          game = Game.new(game_name, size)
+          game = Game.new(game_name)
           :ets.insert(:games_table, {game_name, game})
           game
 
