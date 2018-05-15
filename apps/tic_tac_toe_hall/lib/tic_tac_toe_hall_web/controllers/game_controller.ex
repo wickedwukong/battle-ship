@@ -4,10 +4,14 @@ defmodule TicTacToeHallWeb.GameController do
   plug(:require_player)
 
   def new(conn, _params) do
+    render(conn, "new.html")
+  end
+
+  def create(conn, _params) do
     conn
     |> assign(:game_name, "game_name")
-    |> assign(:auth_token, generate_auth_token(conn))
-    |> render("new.html")
+    |> assign(:auth_token, generate_auth_token(conn))  
+    |> render("show.html")
   end
 
   defp require_player(conn, _opts) do

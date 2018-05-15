@@ -1,30 +1,20 @@
-<div class="row">
-  <div class="col-xs-8 col-md-4 col-xs-offset-2 col-md-offset-4">
-    <div class="input-group">
-      <input id="game-url" class="form-control"
-             value="<%= current_game_url(@conn) %>" readonly>
-      <div class="input-group-btn">
-        <button id="copy-game-url" class="btn btn-primary"
-                data-clipboard-target="#game-url">
-          <i class="fa fa-paste"></i>
-        </button>
-      </div>
-    </div>
+<div class="row" >
+  <div class="col-xs-8 col-xs-offset-2 text-center">
+    <h4>Choose the player:</h4>
   </div>
 </div>
 
-<div id="game-container"
-     data-game-name="<%= @game_name %>"
-     data-auth-token="<%= @auth_token %>"
-     data-ws-url="<%= ws_url() %>">
-</div>
-
 <div class="row">
-  <div class="col-xs-8">
-    <div class="form-group">
-      <%= button("New Game", to: game_path(@conn, :new),
-                  method: :get,
-                  class: "btn btn-primary center-block") %>
-    </div>
+  <div class="col-xs-8 col-xs-offset-2 text-center">
+    <%= form_for @conn, game_path(@conn, :create), [as: :game], fn f -> %>
+      <div class="form-group game-sizes">
+          <%= radio_button f, :player, "X", checked: true %>X
+        </label>
+        <label class="radio-inline">
+          <%= radio_button f, :player, "O" %>O
+        </label>
+      </div>
+      <%= submit "Start Game", class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
