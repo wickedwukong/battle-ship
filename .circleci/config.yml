@@ -7,7 +7,7 @@ jobs:
     docker:
       # specify the version here
       - image: circleci/elixir:1.6
-      
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -20,6 +20,11 @@ jobs:
       - run: mix local.rebar --force  # fetch a copy of rebar (without prompt)
 
       # specify any bash command here prefixed with `run: `
-      - run: cd apps/battleship_hall && pwd
-      - run: cd apps/battleship_hall && mix deps.get
-      - run: cd apps/battleship_hall && mix test
+      # build tic_tac_toe
+      - run: cd apps/tic_tac_toe && pwd
+      - run: cd apps/tic_tac_toe && mix deps.get
+      - run: cd apps/tic_tac_toe && mix test
+      # build tic_tac_toe_hall
+      - run: cd apps/tic_tac_toe_hall && pwd
+      - run: cd apps/tic_tac_toe_hall && mix deps.get
+      - run: cd apps/tic_tac_toe_hall && mix test
