@@ -1,6 +1,10 @@
 defmodule BattleshipHallWeb.GameView do
   use BattleshipHallWeb, :view
 
+  def current_game_url(conn) do
+    url(conn) <> conn.request_path
+  end
+
   def grid_glyph(size) do
     content_tag :div, class: "grid-glyph" do
       for _row <- 1..size do
@@ -11,5 +15,9 @@ defmodule BattleshipHallWeb.GameView do
         end
       end
     end
+  end
+
+  def ws_url do
+    System.get_env("WS_URL") || BattleshipHallWeb.Endpoint.config(:ws_url)
   end
 end

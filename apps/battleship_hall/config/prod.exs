@@ -62,3 +62,6 @@ config :logger, level: :info
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 import_config "prod.secret.exs"
+
+config :battship_hall, BattleshipWeb.Endpoint,
+  ws_url: "ws://localhost:4000/socket/websocket"
