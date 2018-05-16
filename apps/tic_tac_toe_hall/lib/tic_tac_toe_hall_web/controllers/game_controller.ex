@@ -28,6 +28,7 @@ defmodule TicTacToeHallWeb.GameController do
         |> assign(:game_name, game_name)
         |> assign(:auth_token, generate_auth_token(conn))
         |> render("show.html")
+
       nil ->
         conn
         |> put_flash(:error, "No game is found for #{game_name}")
