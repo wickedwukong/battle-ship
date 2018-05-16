@@ -3,7 +3,6 @@ exports.config = {
   files: {
     javascripts: {
       joinTo: "js/app.js"
-
       // To use a separate vendor.js bundle, specify two files path
       // http://brunch.io/docs/config#-files-
       // joinTo: {
@@ -20,7 +19,10 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.css",
+      order: {
+        after: ["css/app.css"] // concat app.css last
+      }
     },
     templates: {
       joinTo: "js/app.js"
@@ -37,7 +39,7 @@ exports.config = {
   // Phoenix paths configuration
   paths: {
     // Dependencies and current project directories to watch
-    watched: ["static", "css", "js", "vendor"],
+    watched: ["static", "css", "js", "vendor", "elm"],
     // Where to compile files to
     public: "../priv/static"
   },
@@ -45,8 +47,16 @@ exports.config = {
   // Configure your plugins
   plugins: {
     babel: {
-      // Do not use ES6 compiler in vendor code
-      ignore: [/vendor/]
+      // Do not use ES6 compiler in vendor and
+      // Elm-compiled bingo.js (reduces buildtime)
+      ignore: [/vendor/, "js/bingo.js"]
+    },
+    elmBrunch: {
+      elmFolder: "elm",
+      mainModules: ["src/Bingo.elm"],
+      outputFolder: "../js",
+      outputFile: 'bingo.js',
+      // makeParameters: ["--warn", "--debug"]
     }
   },
 
@@ -59,4 +69,4 @@ exports.config = {
   npm: {
     enabled: true
   }
-};
+}
