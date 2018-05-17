@@ -25,7 +25,7 @@ defmodule TicTacToeHallWeb.GameChannel do
 
     case GameServer.game_pid(game_name) do
       pid when is_pid(pid) ->
-        //TODO: implement mark square
+        #TODO: implement mark square
         broadcast!(socket, "game_summary", %{
           game_summary: "This is a place holder for game summary"
         })
