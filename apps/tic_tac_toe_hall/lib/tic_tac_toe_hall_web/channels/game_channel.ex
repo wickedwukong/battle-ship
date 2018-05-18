@@ -25,7 +25,9 @@ defmodule TicTacToeHallWeb.GameChannel do
 
     case GameServer.game_pid(game_name) do
       pid when is_pid(pid) ->
-        #TODO: implement mark square
+        # TODO: implement mark square
+        GameServer.mark_game(game_name, %{x: x, y: y}, current_player(socket))
+
         broadcast!(socket, "game_summary", %{
           game_summary: "This is a place holder for game summary"
         })
@@ -35,5 +37,9 @@ defmodule TicTacToeHallWeb.GameChannel do
       nil ->
         {:error, %{reason: "Game does not exist: #{game_name}"}}
     end
+  end
+
+  defp current_player(socket) do
+    socket.assigns.current_player
   end
 end

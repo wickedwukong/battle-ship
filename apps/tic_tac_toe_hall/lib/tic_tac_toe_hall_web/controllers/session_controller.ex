@@ -6,7 +6,7 @@ defmodule TicTacToeHallWeb.SessionController do
   end
 
   def create(conn, %{"player" => %{"name" => name}}) do
-    player = TicTacToe.Player.new(name)
+    player = TicTacToe.Player.new(name, :x)
 
     conn
     |> put_session(:current_player, player)

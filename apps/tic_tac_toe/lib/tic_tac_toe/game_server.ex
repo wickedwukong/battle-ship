@@ -18,6 +18,10 @@ defmodule TicTacToe.GameServer do
     GenServer.call(via_tuple(game_name), :summary)
   end
 
+  def mark(game_name, %{x: x, y: y}, player) do
+    GenServer.call(via_tuple(game_name), {:mark, %{x: x, y: y}, player })
+  end
+
   def game_pid(game_name) do
     game_name
     |> via_tuple()
@@ -44,14 +48,27 @@ defmodule TicTacToe.GameServer do
     {:ok, game, @timeout}
   end
 
+  def handle_call({:mark, %{x: x, y: y}, player }, _from, game) do
+    new_game = Game.mark(%{x: x, y: y}, player)
+
+    :ets.insert(:games_table, {my_game_name, new_game})
+    {:reply, summarize(new_game), new_game, @timeout}
+  end
+
   def handle_call(:summary, _from, game) do
+    {:reply, summarize(game), game, @timeout}
+  end
+
+  def summarize(game) do
     summary = %{
       game_name: game.game_name,
       scores: game.scores,
       squares: game.squares,
       winner: game.winner
     }
+  end
 
-    {:reply, summary, game, @timeout}
+  defp my_game_name do
+    Registry.keys(Bingo.GameRegistry, self()) |> List.first
   end
 end

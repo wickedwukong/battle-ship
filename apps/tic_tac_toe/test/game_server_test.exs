@@ -3,7 +3,7 @@ defmodule GameServerTest do
 
   doctest TicTacToe.GameServer
 
-  alias TicTacToe.{GameServer, Game}
+  alias TicTacToe.{GameServer, Game, Player}
 
   test "spawning a game server process" do
     game_name = generate_game_name()
@@ -36,6 +36,23 @@ defmodule GameServerTest do
 
     assert {:ok, _pid} = GameServer.start_link(game_name)
     assert {:error, {:already_started, _pid}} = GameServer.start_link(game_name)
+  end
+
+  test "marking squares" do
+    game_name = generate_game_name()
+
+    {:ok, _pid} = GameServer.start_link(game_name)
+
+    summary = GameServer.summary(game_name)
+
+    player = Player.new("Nicole", :x)
+
+    _summary = GameServer.mark(game_name, %{x: 0, y: 0}, player)
+    _summary = GameServer.mark(game_name, %{x: 0, y: 1}, player)
+    summary = GameServer.mark(game_name, %{x: 0, y: 2}, player)
+
+    assert Map.get(summary.scores, player.name)
+    assert summary.winner == player
   end
 
   test "store initial state when it started" do

@@ -5,8 +5,8 @@ defmodule PlayerTest do
   alias TicTacToe.Player
 
   test "create a player with name" do
-    player = Player.new("Nelson")
+    player = Player.new("Nelson", :x)
 
-    assert %Player{name: "Nelson"} == player
+    assert %Player{name: "Nelson", piece: :x} == player
   end
 end
