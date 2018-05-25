@@ -43,8 +43,6 @@ defmodule GameServerTest do
 
     {:ok, _pid} = GameServer.start_link(game_name)
 
-    summary = GameServer.summary(game_name)
-
     player = Player.new("Nicole", :x)
 
     _summary = GameServer.mark(game_name, %{x: 0, y: 0}, player)

@@ -1,6 +1,6 @@
 defmodule TicTacToe.Square do
   @enforce_key [:x, :y]
-  defstruct [:x, :y]
+  defstruct [:x, :y, :marked_by]
 
   alias TicTacToe.Square
 

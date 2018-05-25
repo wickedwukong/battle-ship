@@ -2,7 +2,7 @@ defmodule GameTest do
   use ExUnit.Case, async: true
   doctest TicTacToe.Game
 
-  alias TicTacToe.{Game, Square}
+  alias TicTacToe.{Game, Square, Player}
 
   test "create new game" do
     game = Game.new("game-name-foo")
@@ -24,5 +24,24 @@ defmodule GameTest do
 
     third_row = Enum.at(game.squares, 2)
     assert [Square.new(2, 0), Square.new(2, 1), Square.new(2, 2)] == third_row
+  end
+
+  test "mark game" do
+    game =
+      generate_game_name()
+      |> Game.new()
+
+    player = Player.new("ZhangSan", :X)
+    new_game = Game.mark(game, %{x: 0, y: 0}, player)
+
+    first_square = game.squares
+                     |> Enum.at(0)
+                     |> Enum.at(0)
+
+    assert first_square.marked_by == player
+  end
+
+  defp generate_game_name do
+    "game-#{:rand.uniform(1_000_000)}"
   end
 end

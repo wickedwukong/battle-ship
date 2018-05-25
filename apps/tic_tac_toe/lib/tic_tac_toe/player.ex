@@ -2,11 +2,11 @@ defmodule TicTacToe.Player do
   @enforce_key [:name, :piece]
   defstruct [:name, :piece]
 
-  def new(name, :x) do
-    %TicTacToe.Player{name: name, piece: :x}
+  def new(name, piece = :X) do
+    %TicTacToe.Player{name: name, piece: piece}
   end
 
-  def new(name, :y) do
-    %TicTacToe.Player{name: name, piece: :y}
+  def new(name, piece = :O) do
+    %TicTacToe.Player{name: name, piece: piece}
   end
 end
