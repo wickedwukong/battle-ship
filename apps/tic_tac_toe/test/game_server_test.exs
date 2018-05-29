@@ -27,7 +27,6 @@ defmodule GameServerTest do
 
     assert game_name == summary.game_name
     assert nil == summary.winner
-    assert %{} == summary.scores
     assert 3 == Enum.count(summary.squares)
   end
 
@@ -43,13 +42,12 @@ defmodule GameServerTest do
 
     {:ok, _pid} = GameServer.start_link(game_name)
 
-    player = Player.new("Nicole", :x)
+    player = Player.new("Nicole", :X)
 
     _summary = GameServer.mark(game_name, %{x: 0, y: 0}, player)
     _summary = GameServer.mark(game_name, %{x: 0, y: 1}, player)
     summary = GameServer.mark(game_name, %{x: 0, y: 2}, player)
 
-    assert Map.get(summary.scores, player.name)
     assert summary.winner == player
   end
 
@@ -62,7 +60,6 @@ defmodule GameServerTest do
 
     assert game_name == game.game_name
     assert nil == game.winner
-    assert %{} == game.scores
     assert 3 == Enum.count(game.squares)
   end
 
@@ -79,7 +76,6 @@ defmodule GameServerTest do
     assert game_name == summary.game_name
     assert 3 == Enum.count(summary.squares)
     assert nil == summary.winner
-    assert %{} == summary.scores
   end
 
   defp generate_game_name do

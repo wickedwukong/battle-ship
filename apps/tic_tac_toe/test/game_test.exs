@@ -1,5 +1,5 @@
 defmodule GameTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
   doctest TicTacToe.Game
 
   alias TicTacToe.{Game, Square, Player}
@@ -26,19 +26,39 @@ defmodule GameTest do
     assert [Square.new(2, 0), Square.new(2, 1), Square.new(2, 2)] == third_row
   end
 
-  test "mark game" do
-    game =
-      generate_game_name()
-      |> Game.new()
+  describe "mark game" do
+    test "mark game" do
+      game =
+        generate_game_name()
+        |> Game.new()
 
-    player = Player.new("ZhangSan", :X)
-    new_game = Game.mark(game, %{x: 0, y: 0}, player)
+      player = Player.new("ZhangSan", :X)
+      new_game = Game.mark(game, %{x: 0, y: 0}, player)
 
-    first_square = game.squares
-                     |> Enum.at(0)
-                     |> Enum.at(0)
+      first_square =
+        new_game.squares
+        |> Enum.at(0)
+        |> Enum.at(0)
 
-    assert first_square.marked_by == player
+      assert first_square.marked_by == player
+      assert new_game.winner == nil
+    end
+
+    test "declare winner when marked horizontally by the same player" do
+      game =
+        generate_game_name()
+        |> Game.new()
+
+      player = Player.new("ZhangSan", :X)
+
+      new_game =
+        game
+        |> Game.mark(%{x: 0, y: 0}, player)
+        |> Game.mark(%{x: 1, y: 0}, player)
+        |> Game.mark(%{x: 2, y: 0}, player)
+
+      assert new_game.winner == player
+    end
   end
 
   defp generate_game_name do
